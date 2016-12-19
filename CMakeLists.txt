@@ -5,10 +5,12 @@ project(BullsAndCows)
 set(CMAKE_CXX_STANDARD 14)
 
 set(HEADER_FILES
-        include/Rules.h)
+        include/Rules.h
+        include/Utils.h)
 
 set(SOURCE_FILES
-        src/Rules.cpp)
+        src/Rules.cpp
+        src/Utils.cpp)
 
 include_directories(include)
 
