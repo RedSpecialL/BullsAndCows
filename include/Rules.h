@@ -26,7 +26,10 @@ class GameRules
 	 * Construction and destruction.
 	 */
 public:
-	/** Constructpor.*/
+	/** Constructor.*/
+	GameRules() = default;
+	/** Constructor.*/
+	GameRules(const uint8_t maxTurns, const std::string& task) noexcept ;
 	
 	/*
 	 * Public interface.
@@ -38,6 +41,16 @@ public:
 	 * @return - hint, count of bulls and cows.
 	 */
 	BnC calculateHint(std::string suggestion);
+	/*
+	 * Returns true if player have more turns.
+	 */
+	bool isMoreTurns();
+	/** Increments current turn.*/
+	void nextTurn();
+	/*
+	 * Initialize members for the new game.
+	 */
+	void reset(const uint8_t maxTurns, const std::string& task);
 	
 	/*
 	 * Private data members.
