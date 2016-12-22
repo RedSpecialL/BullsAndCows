@@ -2,6 +2,7 @@
 #include <stdexcept>
 
 #include "Rules.h"
+#include "Utils.h"
 
 namespace bnc
 {
@@ -17,7 +18,7 @@ GameRules::GameRules(const uint8_t maxTurns, const std::string& task) noexcept
 	m_currentTurn = 1;
 }
 
-BnC GameRules::calculateHint(std::string suggestion)
+std::string GameRules::calculateHint(std::string suggestion)
 {
 	size_t size = m_task.size();
 	if(suggestion.size() != size)
@@ -25,27 +26,37 @@ BnC GameRules::calculateHint(std::string suggestion)
 		std::string error = "Cannot calculate hint.\nSuggestion's size is incorrect.";
 		throw std::runtime_error(error);
 	}
-	
-	BnC result{0, 0};
+
+	if (!bnc::GameStatics::isIsogram(suggestion))
+	{
+		std::string error = "Suggestion " + suggestion + " is not an isogram.";
+		throw std::runtime_error(error);
+	}
+
+	BnC res{0, 0};
 	for(size_t i = 0; i < size; ++i)
 	{
 		if(suggestion[i] == m_task[i])
 		{
-			++result.bulls;
+			++res.bulls;
 		}
 		else
 		{
-			for(size_t j = i + 1; j < size; ++j)
+			for(size_t j = 0; j < size; ++j)
 			{
 				if(suggestion[i] == m_task[j])
 				{
-					++result.cows;
+					++res.cows;
 					break;
 				}
 			}
 		}
 	}
-	
+
+	std::string b = std::to_string(res.bulls);
+	std::string c = std::to_string(res.cows);
+	std::string result(b + "B" + c + "C");
+
 	return result;
 }
 

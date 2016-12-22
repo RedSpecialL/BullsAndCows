@@ -14,7 +14,7 @@ bool GameStatics::isIsogram(const std::string& word)
 	
 	for(const auto letter : word)
 	{
-		if(used[letter] == true)
+		if(used.find(letter) != used.end())
 		{
 			return false;
 		}

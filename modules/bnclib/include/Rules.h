@@ -1,6 +1,7 @@
 #pragma once
 
 #include "stdint.h"
+#include <string>
 
 namespace bnc
 {
@@ -38,9 +39,9 @@ public:
 	/**
 	 * Calculates hint.
 	 * @param suggestion - player's.
-	 * @return - hint, count of bulls and cows.
+	 * @return - hint, count of bulls and cows in nBmC format, where n is count of bulls, m - cows.
 	 */
-	BnC calculateHint(std::string suggestion);
+	std::string calculateHint(std::string suggestion);
 	/**
 	 * Returns true if player have more turns.
 	 */
@@ -51,7 +52,7 @@ public:
 	 * Initialize members for the new game.
 	 */
 	void reset(const uint8_t maxTurns, const std::string& task);
-	
+
 	/**
 	 * Private data members.
 	 */
