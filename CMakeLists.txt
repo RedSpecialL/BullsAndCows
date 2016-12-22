@@ -1,20 +1,16 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.0.2)
 
-project(BullsAndCows)
+project(BullsAndCowsGame)
 
-set(CMAKE_CXX_STANDARD 14)
+if (MSVC)
+	add_definitions(/W4)
+	add_compile_options(/EHa)
+elseif (GNU)
+	set(CMAKE_CXX_STANDARD 11)
+	set(CMAKE_CXX_STANDARD_REQUIRED ON)
+	add_compile_options(-std=c++11)
+else ()
+	message("Unknown compiler")
+endif ()
 
-set(HEADER_FILES
-        include/Rules.h
-        include/Utils.h)
-
-set(SOURCE_FILES
-        src/Rules.cpp
-        src/Utils.cpp)
-
-include_directories(include)
-
-add_library(bncrules STATIC
-        ${HEADER_FILES}
-        ${SOURCE_FILES}
-        )
+add_subdirectory(modules/bnclib)
