@@ -1,7 +1,17 @@
-cmake_minimum_required(VERSION 3.6)
-project(BullsAndCows)
+cmake_minimum_required(VERSION 3.0.2)
 
-set(CMAKE_CXX_STANDARD 11)
+project(BullsAndCowsGame)
 
-set(SOURCE_FILES main.cpp)
-add_executable(BullsAndCows ${SOURCE_FILES})
+if (MSVC)
+	add_definitions(/W4)
+	add_compile_options(/EHa)
+elseif (GNU)
+	set(CMAKE_CXX_STANDARD 11)
+	set(CMAKE_CXX_STANDARD_REQUIRED ON)
+	add_compile_options(-std=c++11)
+else ()
+	message("Unknown compiler")
+endif ()
+
+add_subdirectory(modules/bnclib)
+add_subdirectory(modules/GameGui)
