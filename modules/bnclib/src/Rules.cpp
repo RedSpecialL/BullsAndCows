@@ -42,7 +42,7 @@ std::string GameRules::calculateHint(std::string suggestion)
 		}
 		else
 		{
-			for(size_t j = i + 1; j < size; ++j)
+			for(size_t j = 0; j < size; ++j)
 			{
 				if(suggestion[i] == m_task[j])
 				{

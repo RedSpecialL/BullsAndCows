@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QMainWindow>
-#include <QMap>
+#include <QVector>
 #include "Rules.h"
 #include <string>
 
@@ -52,6 +52,8 @@ private:
 	bnc::GameRules m_game;
 	/** Pointer to the ui object.*/
 	Ui::MainWindow *ui;
-	/** Container adapter to all player suggestions and hints.*/
-	QMap<std::string, std::string> m_suggestionHints;
+	/** Container adapter for hints.*/
+	QVector<std::string> m_hints;
+	/** Container adapter for player suggestions*/
+	QVector<std::string> m_suggestions;
 };

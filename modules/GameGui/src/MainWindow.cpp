@@ -29,16 +29,18 @@ void MainWindow::draw()
 	ui->tableWidget->clear();
 	ui->tableWidget->setHorizontalHeaderLabels(QString("Suggestion;Hint").split(";"));
 
-	int size = m_suggestionHints.size();
+	int size = m_suggestions.size();
 	ui->tableWidget->setRowCount(size);
 
-	QMap<std::string, std::string>::const_iterator it = m_suggestionHints.constBegin();
+	QVector<std::string>::const_iterator its = m_suggestions.constBegin();
+	QVector<std::string>::const_iterator ith = m_hints.constBegin();
 
 	for (int i = 0; i < size; ++i)
 	{
-		ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString(it.key().c_str())));
-		ui->tableWidget->setItem(i, 1, new QTableWidgetItem(QString(it.value().c_str())));
-		++it;
+		ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString(its->c_str())));
+		ui->tableWidget->setItem(i, 1, new QTableWidgetItem(QString(ith->c_str())));
+		++its;
+		++ith;
 	}
 
 	ui->tableWidget->setColumnWidth(0, (ui->tableWidget->width() / 2) - 9);
@@ -53,7 +55,8 @@ void MainWindow::onOkButtonReleased()
 	{
 		std::string suggestion(ui->suggestion->text().toStdString());
 		std::string hint(m_game.calculateHint(suggestion));
-		m_suggestionHints.insert(suggestion, hint);
+		m_suggestions.push_back(suggestion);
+		m_hints.push_back(hint);
 
 		draw();
 	}
