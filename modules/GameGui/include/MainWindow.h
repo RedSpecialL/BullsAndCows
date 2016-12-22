@@ -38,7 +38,9 @@ signals:
 private slots:
 	/** Checks game status.*/
 	void onGameStatusCheck();
-	/** Reads player suggestion. */
+	/** Starts new game.*/
+	void onNewGameTriggered();
+	/** Reads player suggestion.*/
 	void onOkButtonReleased();
 
 	/**

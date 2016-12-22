@@ -65,6 +65,16 @@ void MainWindow::onGameStatusCheck()
 	}
 }
 
+void MainWindow::onNewGameTriggered()
+{
+	m_game.reset(15, bnc::GameStatics::generateNumberTask(4));
+	m_hints.clear();
+	m_suggestions.clear();
+
+	ui->suggestion->setReadOnly(false);
+	draw();
+}
+
 void MainWindow::onOkButtonReleased()
 {
 	try
@@ -93,6 +103,7 @@ void MainWindow::setConnects()
 {
 	connect(ui->okButton, &QPushButton::released, this, &MainWindow::onOkButtonReleased);
 	connect(this, &MainWindow::gameStatusCheck, this, &MainWindow::onGameStatusCheck);
+	connect(ui->newGameAction, &QAction::triggered, this, &MainWindow::onNewGameTriggered);
 }
 
 void MainWindow::setupWidgets()
