@@ -53,18 +53,6 @@ public:
 	 */
 	void reset(const uint8_t maxTurns, const std::string& task);
 
-	/** Setters and getters.*/
-public:
-	/**
-	 * @return current turn.
-	 */
-	uint8_t getCurrentTurn() const;
-
-	/**
-	 * @return max turns.
-	 */
-	uint8_t getMaxTurns() const;
-	
 	/**
 	 * Private data members.
 	 */
@@ -76,19 +64,5 @@ private:
 	/** Hidden word.*/
 	std::string m_task;
 };
-
-/**
- * Inline implementations.
- */
-
-inline uint8_t GameRules::getCurrentTurn() const
-{
-	return m_currentTurn;
-}
-
-inline uint8_t GameRules::getMaxTurns() const
-{
-	return m_maxTurns;
-}
 
 } // end of namespace bnc

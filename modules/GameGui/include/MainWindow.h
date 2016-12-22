@@ -27,10 +27,18 @@ public:
 	~MainWindow();
 
 	/**
+	 * Signals.
+	 */
+signals:
+	void gameStatusCheck();
+
+	/**
 	 * Private slots.
 	 */
 private slots:
-	/**  */
+	/** Checks game status.*/
+	void onGameStatusCheck();
+	/** Reads player suggestion. */
 	void onOkButtonReleased();
 
 	/**

@@ -27,6 +27,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::draw()
 {
+	ui->suggestion->clear();
 	ui->tableWidget->clear();
 	ui->tableWidget->setHorizontalHeaderLabels(QString("Suggestion;Hint").split(";"));
 
@@ -50,6 +51,20 @@ void MainWindow::draw()
 	ui->tableWidget->scrollToBottom();
 }
 
+void MainWindow::onGameStatusCheck()
+{
+	if (m_hints.back() == "4B0C")
+	{
+		QMessageBox::about(this, "Win", "Congratulations\n YOU WIN!!");
+		ui->suggestion->setReadOnly(true);
+	}
+	if (m_game.isMoreTurns() == false)
+	{
+		QMessageBox::about(this, "Lose", "YOU LOSE!!!\n:C");
+		ui->suggestion->setReadOnly(true);
+	}
+}
+
 void MainWindow::onOkButtonReleased()
 {
 	try
@@ -58,8 +73,11 @@ void MainWindow::onOkButtonReleased()
 		std::string hint(m_game.calculateHint(suggestion));
 		m_suggestions.push_back(suggestion);
 		m_hints.push_back(hint);
+		m_game.nextTurn();
 
 		draw();
+
+		emit gameStatusCheck();
 	}
 	catch(std::runtime_error& e)
 	{
@@ -74,6 +92,7 @@ void MainWindow::onOkButtonReleased()
 void MainWindow::setConnects()
 {
 	connect(ui->okButton, &QPushButton::released, this, &MainWindow::onOkButtonReleased);
+	connect(this, &MainWindow::gameStatusCheck, this, &MainWindow::onGameStatusCheck);
 }
 
 void MainWindow::setupWidgets()
