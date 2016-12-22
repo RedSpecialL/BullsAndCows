@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2)
 
-project(BullsAndCows)
+project(bnclib)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -14,7 +14,7 @@ set(SOURCE_FILES
 
 include_directories(include)
 
-add_library(bncrules STATIC
+add_library(bnclib STATIC
         ${HEADER_FILES}
         ${SOURCE_FILES}
         )
