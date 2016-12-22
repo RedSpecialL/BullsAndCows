@@ -14,3 +14,4 @@ else ()
 endif ()
 
 add_subdirectory(modules/bnclib)
+add_subdirectory(modules/GameGui)
