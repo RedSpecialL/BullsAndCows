@@ -6,7 +6,7 @@
 namespace bnc
 {
 
-/*
+/**
  * Definitions of the Game class.
  */
 

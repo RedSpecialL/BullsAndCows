@@ -4,7 +4,7 @@
 
 namespace bnc
 {
-/*
+/**
  * Definitions of the GameStatics class.
  */
  
