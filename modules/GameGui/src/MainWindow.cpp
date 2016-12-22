@@ -3,6 +3,7 @@
 
 #include "Utils.h"
 #include <QMessageBox>
+#include <QScrollBar>
 
 /**
  * Definitions of the MainWindow class.
@@ -11,8 +12,8 @@
 // Todo: make config.
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
-	, ui(new Ui::MainWindow)
 	, m_game(15, bnc::GameStatics::generateNumberTask(4))
+	, ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
 	setFixedSize(size());
@@ -43,10 +44,10 @@ void MainWindow::draw()
 		++ith;
 	}
 
+	ui->tableWidget->resizeRowsToContents();
 	ui->tableWidget->setColumnWidth(0, (ui->tableWidget->width() / 2) - 9);
 	ui->tableWidget->setColumnWidth(1, (ui->tableWidget->width() / 2) - 9);
-	ui->tableWidget->resizeRowsToContents();
-
+	ui->tableWidget->scrollToBottom();
 }
 
 void MainWindow::onOkButtonReleased()
