@@ -46,7 +46,6 @@ source_group("Ui" FILES ${UI})
 include_directories(
 	include
 	../bnclib/include
-	${Boost_INCLUDE_DIRS}
 	${Qt5Widgets_INCLUDES}
 	)
 
